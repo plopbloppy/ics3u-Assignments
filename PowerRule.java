@@ -12,17 +12,17 @@ public class PowerRule {
         String exponents = keyboard.nextLine();
         keyboard.close();
 
-        String[] coefData = coefficients.split(" ");
-        String[] expData = exponents.split(" ");  
+        String[] coeffSt = coefficients.split(" ");
+        String[] expSt = exponents.split(" ");  
 
-        for (int i = 0; i < coefData.length; i++) {
-            double coefficient = Double.parseDouble(coefData[i]) * Integer.parseInt(expData[i]);
-            double exponent = Integer.parseInt(expData[i]) - 1;
-            derivative1 +=  coefficient + "x^" + exponent + " ";
+        for (int i = 0; i < coeffSt.length; i++) {
+            double coefficient = Double.parseDouble(coeffSt[i]) * Integer.parseInt(expSt[i]);
+            double exponent = Integer.parseInt(expSt[i]) - 1;
+            derivative1 += (coefficient > 0 ? "+" : "") + coefficient + "x^" + exponent + " ";
 
             double coefficient2 = coefficient * exponent;
             double exponent2 = exponent - 1;
-            derivative2 +=  coefficient2 + "x^" + exponent2 + " ";
+            derivative2 += (coefficient2 > 0 ? "+" : "") + coefficient2 + "x^" + exponent2 + " ";
         }
         System.out.println("Your first derivative is: " + derivative1);
         System.out.println("Your second derivative is: " + derivative2);
