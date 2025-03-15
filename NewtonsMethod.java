@@ -4,7 +4,6 @@ public class NewtonsMethod {
     public static void main(String[] args) throws Exception {
         Scanner keyboard = new Scanner(System.in);
 
-        main:
         while (true) {
             System.out.println("Please enter your guess:");
             double x = keyboard.nextDouble();
@@ -23,7 +22,7 @@ public class NewtonsMethod {
                     
                     if  (Character.toLowerCase(keyboard.next().charAt(0)) == 'n') {
                         keyboard.close();
-                        break main;
+                        System.exit(1);
                     } else {
                         break;
                     }
