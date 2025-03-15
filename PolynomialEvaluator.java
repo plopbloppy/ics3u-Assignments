@@ -7,7 +7,7 @@ public class PolynomialEvaluator {
         double sum = 0.0;
         double constant = 0.0;
 
-        System.out.println("Please enter a polynomial in the form of f(x) = 3x^3 -5x^2 +2:");
+        System.out.println("Please enter a polynomial of the form: f(x) = 3x^3 -5x^2 +1x^4 +9x^6 +3.1x^1 +2:");
         String userInput = keyboard.nextLine();
         String polynomial = userInput.substring(userInput.indexOf('=') + 1).trim();
         System.out.println("Please enter a value for x:");
