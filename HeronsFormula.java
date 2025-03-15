@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class HeronsFormula {
     public static void main(String[] args) throws Exception {
-
         Scanner keyboard = new Scanner(System.in);
+        
         System.out.println("Please enter side a:");
         double a = keyboard.nextDouble();
         System.out.println("Please enter side b:");
