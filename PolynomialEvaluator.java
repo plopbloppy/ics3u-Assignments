@@ -9,11 +9,11 @@ public class PolynomialEvaluator {
 
         System.out.println("Please enter a polynomial of the form: f(x) = 3x^3 -5x^2 +1x^4 +9x^6 +3.1x^1 +2:");
         String userInput = keyboard.nextLine();
-        String polynomial = userInput.substring(userInput.indexOf('=') + 1).trim();
         System.out.println("Please enter a value for x:");
-        int x = keyboard.nextInt();
+        double x = keyboard.nextDouble();
         keyboard.close();
 
+        String polynomial = userInput.substring(userInput.indexOf('=') + 1).trim();
         StringTokenizer polySt = new StringTokenizer(polynomial);
 
         while (polySt.hasMoreTokens()) {
@@ -21,10 +21,10 @@ public class PolynomialEvaluator {
             if (term.contains("x")) {
                 int variable = term.indexOf('x');
                 int hat = term.indexOf('^');
-                double coef = Double.parseDouble(term.substring(0, variable));
-                int exp = Integer.parseInt(term.substring(hat + 1));
+                double coefficient = Double.parseDouble(term.substring(0, variable));
+                int exponent = Integer.parseInt(term.substring(hat + 1));
 
-                sum += coef * Math.pow(x, exp);
+                sum += coefficient * Math.pow(x, exponent);
             } else {
                 constant += Double.parseDouble(term);
             }
