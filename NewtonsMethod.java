@@ -13,7 +13,7 @@ public class NewtonsMethod {
                 double derivative = 24 * x * x * x - 39 * x * x - 36 * x + 7;
                 double root = x - function / derivative;
 
-                if (Math.abs(Math.abs(x) - Math.abs(root)) >= 0.0001) {
+                if (Math.abs(Math.abs(x) - Math.abs(root)) > 0.0001) {
                     x = root;
                     System.out.println(root);
                 } else {
