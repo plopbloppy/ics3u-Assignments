@@ -18,12 +18,13 @@ public class TicTacToe {
         
     }
 
-    public static String checkForWins() {
-        return "You win!";
-    }
+    // public static String checkForWins() {
+    //     
+    // }
 
     public static void main(String[] args) throws Exception {
         Scanner keyboard = new Scanner(System.in);
+        final int MAX_TOLERANCE = 9;
         int userInput = 0;
 
         System.out.println("Welcome to Tic-Tac-Toe!");
@@ -32,12 +33,15 @@ public class TicTacToe {
         System.out.println("'o' plays first, and 'x' plays second.");
         System.out.println("You get to play first!");
 
-        while (true) {
+        for (int i = 0; i < MAX_TOLERANCE; i++) {
             board(userInput);
             // need to write a try/catch for this
+            char turn = i % 2 == 0 ? 'o' : 'x';
+            System.out.println("Turn is: Player " + turn + "'s move");
+
             System.out.println("Please choose a square to place your piece:");
             userInput = keyboard.nextInt();
-            checkForWins();
+          
         }
     }
 }
