@@ -2,19 +2,29 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToe {
-    public static String turn(int i, int userInput) {
+    public static String turn(int i) {
         String turn = i % 2 == 0 ? "o" : "x";
         return turn;
+    }
+
+    public static boolean hasSpace(String[][] board, int userInput) {
+        boolean hasSpace = true;
+
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[row].length; col++) {
+                hasSpace = board[row][col].contains("o") || board[row][col].contains("x") ? false : true; 
+            }
+        } 
+        return hasSpace;
     }
 
     public static void board(String[][] board, int i, int userInput) {
         for (int row = 0; row < board.length; row++) {
             for (int col = 0; col < board[row].length; col++) {
                 if (board[row][col].contains(Integer.toString(userInput))) {
-                    board[row][col] = turn(i, userInput);
+                    board[row][col] = turn(i - 1);
                 }
                 System.out.print(board[row][col] + " | ");
-                
             }
             System.out.println();
         }
@@ -38,16 +48,15 @@ public class TicTacToe {
                 "In this game, your objective is to have three consequence pieces diagonally or in a row/column.");
         System.out.println("'o' plays first, and 'x' plays second.");
 
-        for (int i = 0; i < MAX_TOLERANCE; i++) {
-            board(board, i, userInput);
-            System.out.println("Turn: " + turn(i, userInput));
-        
+        for (int i = 0; i < MAX_TOLERANCE; i++) { 
             try {
+                board(board, i, userInput);
+                System.out.println("Turn: " + turn(i));
                 System.out.println("Please choose a square to place your piece:");
                 userInput = keyboard.nextInt();
             } catch (InputMismatchException exception) {
                 System.out.println("Not a number from 1 to 9!");
-            }  
+            }
         }
     }
 }
