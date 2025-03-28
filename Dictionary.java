@@ -30,8 +30,8 @@ public class Dictionary {
         keyboard.close();
 
         String word = input.contains(".") ? input.substring(0, input.indexOf(".")) : input;
-
         String[] words = word.split(" ");
+        
         for (int i = 0; i < words.length; i++) {
             String isValid = dictionary.contains(words[i].toLowerCase()) ? "<valid>" : "<invalid>";
             System.out.println((i + 1) + "." + words[i] + " " + isValid);
