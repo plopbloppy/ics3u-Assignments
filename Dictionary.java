@@ -27,6 +27,7 @@ public class Dictionary {
 
         System.out.println("Please enter your sentence:");
         String input = keyboard.nextLine().trim();
+        keyboard.close();
 
         String word = input.contains(".") ? input.substring(0, input.indexOf(".")) : input;
 
@@ -35,6 +36,5 @@ public class Dictionary {
             String isValid = dictionary.contains(words[i].toLowerCase()) ? "<valid>" : "<invalid>";
             System.out.println((i + 1) + "." + words[i] + " " + isValid);
         }
-        keyboard.close();
     }
 }
