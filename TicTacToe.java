@@ -1,62 +1,105 @@
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class TicTacToe {
-    public static String turn(int i) {
-        String turn = i % 2 == 0 ? "o" : "x";
-        return turn;
-    }
-
-    public static boolean hasSpace(String[][] board, int userInput) {
-        boolean hasSpace = true;
-
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                hasSpace = board[row][col].contains("o") || board[row][col].contains("x") ? false : true; 
-            }
-        } 
-        return hasSpace;
-    }
-
-    public static void board(String[][] board, int i, int userInput) {
-        for (int row = 0; row < board.length; row++) {
-            for (int col = 0; col < board[row].length; col++) {
-                if (board[row][col].contains(Integer.toString(userInput))) {
-                    board[row][col] = turn(i - 1);
-                }
-                System.out.print(board[row][col] + " | ");
+    public static void board(String[][] board, int i) {
+        for (String[] row : board) {
+            for (String col : row) {
+                System.out.print(col);
             }
             System.out.println();
         }
     }
 
-    // public static String checkForWins() {
-    //     
-    // }
+    public static void placePiece(String[][] board, int i, String input, String turn) {
+        String col = input.substring(0, 1);
+        int row = Integer.parseInt(input.substring(1));
+
+        switch (col) {
+            case "A":
+                if (board[row + 1][1].contains("_")) {
+                    board[row + 1][1] = ("|" + turn);
+                } else {
+                    i--;
+                    System.out.println("That spot is taken!");
+                    System.out.println("Please pick another spot.");
+                }
+                break;
+            case "B":
+                if (board[row + 1][2].contains("_")) {
+                    board[row + 1][2] = ("|" + turn);
+                } else {
+                    i--;
+                    System.out.println("That spot is taken!");
+                    System.out.println("Please pick another spot.");
+                }
+                break;
+            case "C":
+                if (board[row + 1][3].contains("_")) {
+                    board[row + 1][3] = ("|" + turn + "|");
+                } else {
+                    i--;
+                    System.out.println("That spot is taken!");
+                    System.out.println("Please pick another spot.");
+                }
+                break;
+            default:
+                i--;
+                System.out.println("Please use the correct form! (e.g. C2)");
+        }
+    }
+
+    public static void checkForWin(int i, String[][] board, String input, String turn) {
+        String col = input.substring(0, 1);
+        int winCounter = 0;
+
+        switch (col) {
+            case "A":
+                for (i = 2; i < 5; i++) {
+                    winCounter = board[i][1].contains(turn) ? winCounter++ : 0;
+                }
+                if (winCounter == 3) {
+                    System.out.println("'" + turn + "' has won!!!");
+                }
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         Scanner keyboard = new Scanner(System.in);
-        final int MAX_TOLERANCE = 9;
-        int userInput = 0;
+        int i = 0;
 
-        String[][] board = { { "1", "2", "3" },
-                { "4", "5", "6" },
-                { "7", "8", "9" } };
-            
+        String[][] board = { { "   ", " A ", "B ", "C" },
+                { "   ", " _ ", "_ ", "_" },
+                { "1  ", "|_", "|_", "|_|" },
+                { "2  ", "|_", "|_", "|_|" },
+                { "3  ", "|_", "|_", "|_|" } };
+
         System.out.println("Welcome to Tic-Tac-Toe!");
         System.out.println(
                 "In this game, your objective is to have three consequence pieces diagonally or in a row/column.");
         System.out.println("'o' plays first, and 'x' plays second.");
+        System.out.println("To place your piece, enter the column and the row, in the form of 'A1'.");
 
-        for (int i = 0; i < MAX_TOLERANCE; i++) { 
+        while (true) {
             try {
-                board(board, i, userInput);
-                System.out.println("Turn: " + turn(i));
-                System.out.println("Please choose a square to place your piece:");
-                userInput = keyboard.nextInt();
-            } catch (InputMismatchException exception) {
-                System.out.println("Not a number from 1 to 9!");
+                String turn = i % 2 == 0 ? "o" : "x";
+                board(board, i);
+                System.out.println("Turn: " + turn);
+                System.out.println("Place your piece:");
+                String input = keyboard.next();
+
+                placePiece(board, i, input, turn);
+                checkForWin(i, board, input, turn);
+                System.out.println("-------------");
+            } catch (NumberFormatException e) {
+                i--;
+                System.out.println("Please use the correct form! (e.g. B3)");
+                System.out.println("-------------");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                i--;
+                System.out.println("Not an valid spot!");
+                System.out.println("-------------");
             }
+            i++;
         }
     }
 }
