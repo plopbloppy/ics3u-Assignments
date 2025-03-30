@@ -13,22 +13,21 @@ public class TicTacToe {
         }
     }
 
-    public static void placePiece(String[][] board, String turn, String input) {
+    public static void placePiece(final int ROW_ADJUSTMENT, String[][] board, String turn, String input) {
         String col = input.substring(0, 1);
         int row = Integer.parseInt(input.substring(1));
 
         switch (col) {
-            case "A" -> board[row + 1][1] = ("|" + turn);
-            case "B" -> board[row + 1][2] = ("|" + turn);
-            case "C" -> board[row + 1][3] = ("|" + turn + "|");
+            case "A" -> board[row + ROW_ADJUSTMENT][1] = ("|" + turn);
+            case "B" -> board[row + ROW_ADJUSTMENT][2] = ("|" + turn);
+            case "C" -> board[row + ROW_ADJUSTMENT][3] = ("|" + turn + "|");
         }
     }
 
-    public static boolean checkForWin(String[][] board, String turn, String input) {
+    public static boolean checkForWin(final int ROW_ADJUSTMENT, String[][] board, String turn, String input) {
         String letterCol = input.substring(0, 1);
-        int rowInput = Integer.parseInt(input.substring(1));
+        int row = Integer.parseInt(input.substring(1)) + ROW_ADJUSTMENT;
         int col = 0;
-        int row = 0;
         int verticalWinCounter = 0;
         int horizontalWinCounter = 0;
         boolean diagonalWin = false;    
@@ -37,12 +36,6 @@ public class TicTacToe {
             case "A" -> col = 1;
             case "B" -> col = 2;
             case "C" -> col = 3;
-        }
-
-        switch (rowInput) {
-            case 1 -> row = 2;
-            case 2 -> row = 3;
-            case 3 -> row = 4;
         }
 
         for (int i = 2; i < 5; i++) {
@@ -69,6 +62,7 @@ public class TicTacToe {
         HashSet<String> playsMade = new HashSet<String>();
         Scanner keyboard = new Scanner(System.in);
         final int MAX_TOLERANCE = 8;
+        final int ROW_ADJUSTMENT = 1;
         int i = 0;
         String input = "";
 
