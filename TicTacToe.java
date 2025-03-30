@@ -90,31 +90,45 @@ public class TicTacToe {
             Matcher matcher = pattern.matcher(input);
             boolean matchFound = matcher.find();
 
-            if (matchFound) {
-                if (playsMade.contains(input)) {
-                    System.out.println("That move has already been entered!");
-                    i--;
-                } else {
-                    placePiece(board, turn, input);
-                    if (checkForWin(board, turn, input)) {
-                        board(board);
-                        System.out.println("Player '" + turn + "' has won!!!");
-                        keyboard.close();
-                        System.exit(1);
-                    } else if (i == MAX_TOLERANCE) {
-                        board(board);
-                        System.out.println("Game is a tie!");
-                        keyboard.close();
-                        System.exit(1);
+            try {
+                System.out.println("Place your piece:");
+                input = keyboard.next();
+
+                Pattern pattern = Pattern.compile("[ABC]+[1-3]");
+                Matcher matcher = pattern.matcher(input);
+                boolean matchFound = matcher.find();
+
+                if (matchFound) {
+                    if (playsMade.contains(input)) {
+                        System.out.println("That move has already been entered!");
+                        i--;
+                    } else {
+                        placePiece(ROW_ADJUSTMENT, board, turn, input);
+                        if (checkForWin(ROW_ADJUSTMENT, board, turn, input)) {
+                            board(board);
+                            System.out.println("Player '" + turn + "' has won!!!");
+                            keyboard.close();
+                            System.exit(1);
+                        } else if (i == MAX_TOLERANCE) {
+                            board(board);
+                            System.out.println("Game is a tie!");
+                            keyboard.close();
+                            System.exit(1);
+                        }
                     }
+                    System.out.println("-------------");
+                    playsMade.add(input);
+                    i++;
+                } else {
+                    System.out.println("Please use the correct form! (e.g. B3)");
+                    System.out.println("-------------");
+                    i--;
                 }
-            } else {
-                System.out.println("Please use the correct form! (e.g. B3)");
+            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                System.out.println("Not a valid input!");
+                System.out.println("-------------");
                 i--;
             }
-            System.out.println("-------------");
-            playsMade.add(input);
-            i++;
         }
     }
 }
