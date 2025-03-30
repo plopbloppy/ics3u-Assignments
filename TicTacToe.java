@@ -1,7 +1,8 @@
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class TicTacToe {
-    public static void board(String[][] board, int i) {
+    public static void board(String[][] board) {
         for (String[] row : board) {
             for (String col : row) {
                 System.out.print(col);
@@ -10,45 +11,26 @@ public class TicTacToe {
         }
     }
 
-    public static void placePiece(String[][] board, int i, String input, String turn) {
+    public static void placePiece(String[][] board, String turn, String input) {
         String col = input.substring(0, 1);
         int row = Integer.parseInt(input.substring(1));
 
         switch (col) {
             case "A":
-                if (board[row + 1][1].contains("_")) {
-                    board[row + 1][1] = ("|" + turn);
-                } else {
-                    i--;
-                    System.out.println("That spot is taken!");
-                    System.out.println("Please pick another spot.");
-                }
+                board[row + 1][1] = ("|" + turn);
                 break;
             case "B":
-                if (board[row + 1][2].contains("_")) {
-                    board[row + 1][2] = ("|" + turn);
-                } else {
-                    i--;
-                    System.out.println("That spot is taken!");
-                    System.out.println("Please pick another spot.");
-                }
+                board[row + 1][2] = ("|" + turn);
                 break;
             case "C":
-                if (board[row + 1][3].contains("_")) {
-                    board[row + 1][3] = ("|" + turn + "|");
-                } else {
-                    i--;
-                    System.out.println("That spot is taken!");
-                    System.out.println("Please pick another spot.");
-                }
+                board[row + 1][3] = ("|" + turn + "|");
                 break;
             default:
-                i--;
                 System.out.println("Please use the correct form! (e.g. C2)");
         }
     }
 
-    public static void checkForWin(int i, String[][] board, String input, String turn) {
+    public static void checkForWin(int i, String[][] board, String turn, String input) {
         String col = input.substring(0, 1);
         int winCounter = 0;
 
@@ -65,7 +47,10 @@ public class TicTacToe {
 
     public static void main(String[] args) throws Exception {
         Scanner keyboard = new Scanner(System.in);
+        HashSet<String> playsMade = new HashSet<String>();
         int i = 0;
+        String turn = i % 2 == 0 ? "o" : "x";
+        String input = "";        
 
         String[][] board = { { "   ", " A ", "B ", "C" },
                 { "   ", " _ ", "_ ", "_" },
@@ -80,25 +65,32 @@ public class TicTacToe {
         System.out.println("To place your piece, enter the column and the row, in the form of 'A1'.");
 
         while (true) {
+            board(board);
+            System.out.println("Turn: " + turn);
+    
             try {
-                String turn = i % 2 == 0 ? "o" : "x";
-                board(board, i);
-                System.out.println("Turn: " + turn);
                 System.out.println("Place your piece:");
-                String input = keyboard.next();
+                input = keyboard.next();
 
-                placePiece(board, i, input, turn);
-                checkForWin(i, board, input, turn);
+                if (playsMade.contains(input)) {
+                    System.out.println("That move has already been entered!");
+                    i--;
+                } else {
+                    placePiece(board, turn, input);
+                    checkForWin(i, board, turn, input);
+                }
+                    
                 System.out.println("-------------");
             } catch (NumberFormatException e) {
-                i--;
                 System.out.println("Please use the correct form! (e.g. B3)");
                 System.out.println("-------------");
-            } catch (ArrayIndexOutOfBoundsException e) {
                 i--;
+            } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("Not an valid spot!");
                 System.out.println("-------------");
+                i--;
             }
+            playsMade.add(input);
             i++;
         }
     }
