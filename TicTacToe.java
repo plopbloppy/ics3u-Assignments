@@ -1,4 +1,6 @@
 import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Scanner;
 
 public class TicTacToe {
@@ -24,9 +26,7 @@ public class TicTacToe {
                 break;
             case "C":
                 board[row + 1][3] = ("|" + turn + "|");
-                break;
-            default:
-                System.out.println("Please use the correct form! (e.g. C2)");
+                break; 
         }
     }
 
@@ -72,14 +72,22 @@ public class TicTacToe {
                 System.out.println("Place your piece:");
                 input = keyboard.next();
 
-                if (playsMade.contains(input)) {
-                    System.out.println("That move has already been entered!");
-                    i--;
+                Pattern pattern = Pattern.compile([A-C]);
+                Matcher matcher = pattern.matcher("Vdfasdfasd");
+                boolean matchFound = matcher.find();
+
+                if (input.matches(/[A-C])) {
+                    if (playsMade.contains(input)) {
+                        System.out.println("That move has already been entered!");
+                        i--;
+                    } else {
+                        placePiece(board, turn, input);
+                        checkForWin(i, board, turn, input);
+                    }
                 } else {
-                    placePiece(board, turn, input);
-                    checkForWin(i, board, turn, input);
+                    System.out.println("Please use the correct form! (e.g. C2)");
                 }
-                    
+                     
                 System.out.println("-------------");
             } catch (NumberFormatException e) {
                 System.out.println("Please use the correct form! (e.g. B3)");
