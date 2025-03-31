@@ -60,7 +60,6 @@ public class TicTacToe {
         HashSet<String> playsMade = new HashSet<String>();
         Scanner keyboard = new Scanner(System.in);
         final int MAX_TOLERANCE = 9;
-        String input;
 
         String[][] board = { { "   ", " A ", "B ", "C" },
                 { "   ", " _ ", "_ ", "_" },
