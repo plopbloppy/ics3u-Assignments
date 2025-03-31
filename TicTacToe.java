@@ -70,7 +70,7 @@ public class TicTacToe {
 
         System.out.println("Welcome to Tic-Tac-Toe!");
         System.out.println(
-                "In this game, your objective is to have three consequence pieces diagonally or in a row/column.");
+                "In this game, your objective is to have three consecutive pieces diagonally or in a row/column.");
         System.out.println("'o' plays first, and 'x' plays second.");
         System.out.println("To place your piece, enter the column and the row, in the form of 'A1' (case-sensitive).");
 
