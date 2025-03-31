@@ -11,6 +11,8 @@ public class Dictionary {
         BufferedReader inputStream = null;
         String line = null;
 
+        String[] punctuation = {".", "!", "?", "'", ";", "-", "(", ")"};
+
         try {
             inputStream = new BufferedReader(new FileReader("dictionary.txt"));
             while ((line = inputStream.readLine()) != null) {
@@ -24,13 +26,17 @@ public class Dictionary {
                 inputStream.close();
             }
         }
-
         System.out.println("Please enter your sentence:");
         String input = keyboard.nextLine().trim();
         keyboard.close();
+        
+        for (int i = 0; i < punctuation.length; i++) {
+            if (input.contains(punctuation[i])) {
+                input.replaceAll(punctuation[i], "");
+            }
+        }
 
-        String word = input.contains(".") ? input.substring(0, input.indexOf(".")) : input;
-        String[] words = word.split(" ");
+        String[] words = input.split(" ");
         
         for (int i = 0; i < words.length; i++) {
             String isValid = dictionary.contains(words[i].toLowerCase()) ? "<valid>" : "<invalid>";
