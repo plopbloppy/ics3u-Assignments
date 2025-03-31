@@ -70,7 +70,7 @@ public class TicTacToe {
 
         System.out.println("Welcome to Tic-Tac-Toe!");
         System.out.println(
-                "In this game, your objective is to have three consecutive pieces diagonally or in a row/column.");
+                "In this game, your objective is to have three consequence pieces diagonally or in a row/column.");
         System.out.println("'o' plays first, and 'x' plays second.");
         System.out.println("To place your piece, enter the column and the row, in the form of 'A1' (case-sensitive).");
 
@@ -78,7 +78,7 @@ public class TicTacToe {
             String turn = i % 2 == 0 ? "o" : "x";
             board(board);
             System.out.println("Turn: " + turn);
-
+    
             try {
                 System.out.println("Place your piece:");
                 input = keyboard.next();
@@ -111,6 +111,10 @@ public class TicTacToe {
                 }
             } catch (java.lang.ArrayIndexOutOfBoundsException e) {
                 System.out.println("Not a valid input!");
+                System.out.println("-------------");
+                i--;
+            } catch (java.lang.NumberFormatException e) {
+                System.out.println("Please use the correct form! (e.g. B3)");
                 System.out.println("-------------");
                 i--;
             }
