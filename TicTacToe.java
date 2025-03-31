@@ -27,7 +27,7 @@ public class TicTacToe {
 
     public static void placePiece(String[][] board, String turn, String input) {
         int row = Integer.parseInt(input.substring(1));
-        board[row + 1][adjustCol(input)] = adjustCol(input) == 3 ? "|" + turn + "|" : "|" + turn;        
+        board[row + 1][adjustCol(input)] = adjustCol(input) == 3 ? "|" + turn + "|" : "|" + turn;
     }
 
     public static boolean checkForWin(String[][] board, String turn, String input) {
@@ -78,43 +78,33 @@ public class TicTacToe {
             String turn = i % 2 == 0 ? "o" : "x";
             board(board);
             System.out.println("Turn: " + turn);
-    
-            try {
-                System.out.println("Place your piece:");
-                input = keyboard.next();
 
-                Pattern pattern = Pattern.compile("[ABC]");
-                Matcher matcher = pattern.matcher(input);
-                boolean matchFound = matcher.find();
+            System.out.println("Place your piece:");
+            input = keyboard.next();
 
-                if (matchFound) {
-                    if (playsMade.contains(input)) {
-                        System.out.println("That move has already been entered!");
-                        i--;
-                    } else {
-                        placePiece(board, turn, input);
-                        if (checkForWin(board, turn, input)) {
-                            board(board);
-                            System.out.println("-------------");
-                            System.out.println("Player '" + turn + "' has won!!! GG!");
-                            System.out.println("(╯°□°)╯︵ ┻━┻");
-                            keyboard.close();
-                            System.exit(1);
-                        }
-                    }
-                    System.out.println("-------------");
-                    playsMade.add(input);
-                } else {
-                    System.out.println("Please use the correct form! (e.g. B3)");
-                    System.out.println("-------------");
+            Pattern pattern = Pattern.compile("^[ABC]+[1-3]$");
+            Matcher matcher = pattern.matcher(input);
+            boolean matchFound = matcher.find();
+
+            if (matchFound) {
+                if (playsMade.contains(input)) {
+                    System.out.println("That move has already been entered!");
                     i--;
+                } else {
+                    placePiece(board, turn, input);
+                    if (checkForWin(board, turn, input)) {
+                        board(board);
+                        System.out.println("-------------");
+                        System.out.println("Player '" + turn + "' has won!!! GG!");
+                        System.out.println("(╯°□°)╯︵ ┻━┻");
+                        keyboard.close();
+                        System.exit(1);
+                    }
                 }
-            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-                System.out.println("Not a valid input!");
                 System.out.println("-------------");
-                i--;
-            } catch (java.lang.NumberFormatException e) {
-                System.out.println("Please use the correct form! (e.g. B3)");
+                playsMade.add(input);
+            } else {
+                System.out.println("Not a valid input!");
                 System.out.println("-------------");
                 i--;
             }
