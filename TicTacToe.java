@@ -13,34 +13,31 @@ public class TicTacToe {
         }
     }
 
-    public static void placePiece(String[][] board, String turn, String input) {
-        String col = input.substring(0, 1);
-        int row = Integer.parseInt(input.substring(1));
-
-        switch (col) {
-            case "A" -> board[row + 1][1] = ("|" + turn);
-            case "B" -> board[row + 1][2] = ("|" + turn);
-            case "C" -> board[row + 1][3] = ("|" + turn + "|");
-        }
-    }
-
-    public static boolean checkForWin(String[][] board, String turn, String input) {
-
+    public static int adjustCol(String input) {
         String letterCol = input.substring(0, 1);
-        int row = Integer.parseInt(input.substring(1)) + 1;
         int col = 0;
-        int verticalWinCounter = 0;
-        int horizontalWinCounter = 0;
-        boolean diagonalWin = false;
 
         switch (letterCol) {
             case "A" -> col = 1;
             case "B" -> col = 2;
             case "C" -> col = 3;
         }
+        return col;
+    }
+
+    public static void placePiece(String[][] board, String turn, String input) {
+        int row = Integer.parseInt(input.substring(1));
+        board[row + 1][adjustCol(input)] = adjustCol(input) == 3 ? "|" + turn + "|" : "|" + turn;        
+    }
+
+    public static boolean checkForWin(String[][] board, String turn, String input) {
+        int row = Integer.parseInt(input.substring(1)) + 1;
+        int verticalWinCounter = 0;
+        int horizontalWinCounter = 0;
+        boolean diagonalWin = false;
 
         for (int i = 2; i < 5; i++) {
-            if (board[i][col].contains(turn)) {
+            if (board[i][adjustCol(input)].contains(turn)) {
                 verticalWinCounter++;
             }
         }
@@ -62,8 +59,7 @@ public class TicTacToe {
     public static void main(String[] args) throws Exception {
         HashSet<String> playsMade = new HashSet<String>();
         Scanner keyboard = new Scanner(System.in);
-        final int MAX_TOLERANCE = 8;
-        int i = 0;
+        final int MAX_TOLERANCE = 9;
         String input;
 
         String[][] board = { { "   ", " A ", "B ", "C" },
@@ -78,7 +74,7 @@ public class TicTacToe {
         System.out.println("'o' plays first, and 'x' plays second.");
         System.out.println("To place your piece, enter the column and the row, in the form of 'A1' (case-sensitive).");
 
-        while (true) {
+        for (int i = 0; i < MAX_TOLERANCE; i++) {
             String turn = i % 2 == 0 ? "o" : "x";
             board(board);
             System.out.println("Turn: " + turn);
@@ -102,18 +98,12 @@ public class TicTacToe {
                             System.out.println("-------------");
                             System.out.println("Player '" + turn + "' has won!!! GG!");
                             System.out.println("(╯°□°)╯︵ ┻━┻");
-                            break;
-                        } else if (i == MAX_TOLERANCE) {
-                            board(board);
-                            System.out.println("-------------");
-                            System.out.println("Game is a tie! GG!");
-                            System.out.println("(=´_｀)人(´^｀=)");
-                            break;
+                            keyboard.close();
+                            System.exit(1);
                         }
                     }
                     System.out.println("-------------");
                     playsMade.add(input);
-                    i++;
                 } else {
                     System.out.println("Please use the correct form! (e.g. B3)");
                     System.out.println("-------------");
@@ -125,6 +115,10 @@ public class TicTacToe {
                 i--;
             }
         }
+        board(board);
+        System.out.println("-------------");
+        System.out.println("Game is a tie! GG!");
+        System.out.println("(=´_｀)人(´^｀=)");
         keyboard.close();
         System.exit(1);
     }
