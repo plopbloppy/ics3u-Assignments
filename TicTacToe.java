@@ -1,4 +1,3 @@
-import java.util.HashSet;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,16 +17,30 @@ public class TicTacToe {
         int col = 0;
 
         switch (letterCol) {
-            case "A" -> col = 1;
-            case "B" -> col = 2;
-            case "C" -> col = 3;
+            case "A":
+                col = 1;
+                break;
+            case "B":
+                col = 2;
+                break;
+            case "C": 
+                col = 3;
+                break;
         }
         return col;
     }
 
-    public static void placePiece(String[][] board, String turn, String input) {
+    public static int[] returnIndex(String[][] board, String turn, String input){
+        int[] choices = new int[2];
         int row = Integer.parseInt(input.substring(1));
-        board[row + 1][adjustCol(input)] = adjustCol(input) == 3 ? "|" + turn + "|" : "|" + turn;
+        choices[0] = row + 1;
+        choices[1] = adjustCol(input);
+        return choices;
+    }
+
+    public static void placePiece(String[][] board, String turn, String input) {
+        int[] index = returnIndex(board, turn, input);
+        board[index[0]][index[1]] = adjustCol(input) == 3 ? "|" + turn + "|" : "|" + turn;
     }
 
     public static boolean checkForWin(String[][] board, String turn, String input) {
@@ -57,9 +70,9 @@ public class TicTacToe {
     }
 
     public static void main(String[] args) throws Exception {
-        HashSet<String> playsMade = new HashSet<String>();
         Scanner keyboard = new Scanner(System.in);
         final int MAX_TOLERANCE = 9;
+        String input;
 
         String[][] board = { { "   ", " A ", "B ", "C" },
                 { "   ", " _ ", "_ ", "_" },
@@ -79,14 +92,15 @@ public class TicTacToe {
             System.out.println("Turn: " + turn);
 
             System.out.println("Place your piece:");
-            input = keyboard.next();
+            input = keyboard.nextLine();
 
             Pattern pattern = Pattern.compile("^[ABC]+[1-3]$");
             Matcher matcher = pattern.matcher(input);
             boolean matchFound = matcher.find();
 
             if (matchFound) {
-                if (playsMade.contains(input)) {
+                int[] choices = returnIndex(board, turn, input);
+                if (board[choices[0]][choices[1]].contains("o") || board[choices[0]][choices[1]].contains("x")) {
                     System.out.println("That move has already been entered!");
                     i--;
                 } else {
@@ -101,7 +115,6 @@ public class TicTacToe {
                     }
                 }
                 System.out.println("-------------");
-                playsMade.add(input);
             } else {
                 System.out.println("Not a valid input!");
                 System.out.println("-------------");
