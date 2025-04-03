@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class Dictionary {
+    
     public static void main(String[] args) throws Exception {
         Scanner keyboard = new Scanner(System.in);
         HashSet<String> dictionary = new HashSet<String>();
