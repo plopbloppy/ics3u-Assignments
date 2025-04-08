@@ -1,22 +1,10 @@
 public class Main {
-    
-    public static void main (String[] args) {
-        Quadratic quadratic = new Quadratic(1, 6, 9);
+    public static void main(String[] args) {
+        Point p1 = new Point(2, 3);
+        Point p2 = new Point(1, 2);
 
-        double[] roots = quadratic.getRoots();
-        double[] vertex = quadratic.getVertex();
-
-        System.out.println("a: " + quadratic.getA());
-        System.out.println("b: " + quadratic.getB());
-        System.out.println("c: " + quadratic.getC());
-        System.out.println("Has roots: " + quadratic.hasRealRoots());
-        System.out.println("Has maximum: " + quadratic.isMaximum());
-        System.out.println("Discriminant: " + quadratic.getDiscriminant());
-        System.out.println("Roots: (x = " + roots[0] + ") & (x =" + roots[1] + ")");
-        System.out.println("Vertex: (" + vertex[0] + ", " + vertex[1] + ")");
-        System.out.println("Y-int: " + quadratic.getYIntercept());
-        quadratic.getStandardForm();
-        quadratic.getVertexForm();
-        quadratic.getFactoredForm();
+        p1.displayCoordinate();
+        System.out.println("Difference: (" + p1.difference(p2).getX() + ", " + p1.difference(p2).getY() + ")");
+        System.out.println("Distance: " + p1.distance(p2) + " units");
     }
 }
