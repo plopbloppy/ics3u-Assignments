@@ -2,8 +2,6 @@ public class Point {
 
     private double x;
     private double y;
-    private double x2;
-    private double y2;
     
     public Point() {
         Point point = new Point(0, 0);
@@ -15,10 +13,10 @@ public class Point {
     }
 
     public Point difference(Point point) {
-        Point p1 = new Point(x, y);
-        Point p2 = new Point(x2, y2);
+        double x2 = point.getX();
+        double y2 = point.getY(); 
 
-        return p1.difference(p2);
+        return new Point(x - x2, y - y2);
     }
 
     public void displayCoordinate() {
@@ -27,8 +25,10 @@ public class Point {
     }
 
     public double distance(Point point) {
-        Point p2 = new Point(x2, y2);
-        return Math.sqrt(Math.pow(p2.getX() - getX(), 2) + Math.pow(p2.getY() - getY(), 2));
+        double x2 = point.getX();
+        double y2 = point.getY(); 
+
+        return Math.sqrt(Math.pow(x2 - x, 2) + Math.pow(y2 - y, 2));
     }
 
     public double getX() {
@@ -40,7 +40,8 @@ public class Point {
     }
 
     public void linearEquation(Point point) {
-        Point p2 = new Point(x2, y2);
+        x2 = point.getX();
+        y2 =
         double m = (p2.getY() - getY()) / (p2.getX() - getX());
         double b = 
 
