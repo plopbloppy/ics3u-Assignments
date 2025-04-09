@@ -25,6 +25,7 @@ public class Dictionary {
                 inputStream.close();
             }
         }
+        
         System.out.println("Please enter your sentence:");
         String input = keyboard.nextLine().trim();
         keyboard.close();
