@@ -34,10 +34,7 @@ public class Point {
     }
 
     public void linearEquation(Point point) {
-        double m = (point.getY() - y) / (point.getX() - x);
-        double b = y - m * x;
-
-        System.out.println("y = " + m + "x + " + b);
+        System.out.println("y = " + slope(point) + "x + " + yIntercept(point));
     }
 
     public Point midpoint(Point point) {
@@ -53,8 +50,6 @@ public class Point {
     }
 
     public double yIntercept(Point point) {
-        double m = (point.getY() - y) / (point.getX() - x);
-        
-        return y - m * x;
+        return y - slope(point) * x;
     }
 }
