@@ -4,7 +4,8 @@ public class Point {
     private double y;
     
     public Point() {
-        Point point = new Point(0, 0);
+        this.x = 0;
+        this.y = 0;
     }
 
     public Point(double x, double y) {
@@ -22,7 +23,7 @@ public class Point {
     }
 
     public double distance(Point point) {
-        return Math.sqrt(Math.pow(point.getX() - x, 2) + Math.pow(point.getY() - y, 2));
+        return Math.sqrt(Math.pow(difference(point).getX(), 2) + Math.pow(difference(point).getY(), 2));
     }
 
     public double getX() {
@@ -38,11 +39,11 @@ public class Point {
     }
 
     public Point midpoint(Point point) {
-        return new Point((x + point.getX()) / 2, (y + point.getY()) / 2);
+        return new Point(sum(point).getX() / 2, sum(point).getY() / 2);
     }
 
     public double slope(Point point) {
-        return (point.getY() - y) / (point.getX() - x);
+        return (difference(point).getY()) / difference(point).getX();
     }
 
     public Point sum(Point point) {
