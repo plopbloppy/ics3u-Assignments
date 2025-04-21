@@ -36,14 +36,14 @@ public enum Element {
     }
 
     private boolean isIonicCompound(Element element) {
-        return !(ionicCharge > 0 && element.getIonicCharge() > 0 || ionicCharge < 0 && element.getIonicCharge() < 0);
+        return !(ionicCharge * element.getIonicCharge() > 0);
     }
 
     private double calculateIonicCompoundMass(Element element) {
         if (Math.abs(ionicCharge) == Math.abs(element.getIonicCharge())) {
-            return (atomicMass + element.getAtomicMass());
+            return atomicMass + element.getAtomicMass();
         } else {
-            return (atomicMass * Math.abs(element.getIonicCharge()) + element.getAtomicMass() * Math.abs(ionicCharge));
+            return atomicMass * Math.abs(element.getIonicCharge()) + element.getAtomicMass() * Math.abs(ionicCharge);
         }
     }
 
@@ -65,7 +65,6 @@ public enum Element {
         } else {
             chemicalFormula = element.getSymbol() + Math.abs(ionicCharge) + symbol + Math.abs(element.getIonicCharge());
         }
-
         return chemicalFormula.replace("1", "");
     }
 
