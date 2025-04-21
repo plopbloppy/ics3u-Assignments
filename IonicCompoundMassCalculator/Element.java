@@ -1,17 +1,21 @@
 public enum Element {
     
     LITHIUM(6.9410, "Li", 1),
-    BERYLLIUM(9.0122, "Be", 2),
     NITROGEN(14.007, "N", -3),
     OXYGEN(15.999, "O", -2),
     FLUORINE(18.998, "F", -1),
     SODIUM(22.990, "Na", 1),
     MAGNESIUM(24.305, "Mg", 2),
+    ALUMINUM(26.982, "Al", 3),
     PHOSPHORUS(30.974, "P", -3),
     SULFUR(32.065, "S", -2),
     CHLORINE(35.453, "Cl", -1),
     POTASSIUM(39.098, "K", 1),
-    CALCIUM(40.078, "Ca", 2);
+    CALCIUM(40.078, "Ca", 2),
+    BROMINE(79.904, "Br", -1),
+    STRONTIUM(87.620, "Sr", 2),
+    IODINE(126.90, "I", -1),
+    BARIUM(137.33, "Ba", 2);
 
     private double atomicMass;
     private String symbol;
