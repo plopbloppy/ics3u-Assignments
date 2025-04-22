@@ -53,7 +53,7 @@ public class Pizza {
                 System.out.println("It is certain that the mozarella will have a delicious milk flavour!");
                 break;
             case "ricotta":
-                System.out.println("The ricotta is creamy and refreshing")
+                System.out.println("The ricotta is creamy and refreshing. Its mild flavour makes it suitable for any pizza!");
                 break;
             default:
                 System.out.println("The cheese is soft and nicely contrasts the crispy crust.");
