@@ -1,9 +1,9 @@
 public class PizzaTest {
 
     public static void main(String[] args) {
-        Pizza pizza = new Pizza("CHEDDAR", "pesto", 2);
+        Pizza pizza = new Pizza(2);
+        VegetarianPizza pizza2 = new VegetarianPizza();
 
-        pizza.eatPizza();
-        pizza.tasteCheese();
+        pizza2.eatPizza();
     }
 }

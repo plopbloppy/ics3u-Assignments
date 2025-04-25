@@ -3,14 +3,15 @@ public class Pizza {
     public String cheese;
     public String sauce;
     public int numberOfSlices;
+    protected double bank;
 
-    public Pizza(String cheese) {
-        this.cheese = cheese;
+    public Pizza() {
+        this.sauce = "tomato";
+        this.numberOfSlices = 8;
     }
 
-    public Pizza(String cheese, String sauce) {
-        this.cheese = cheese;
-        this.sauce = sauce;
+    public Pizza(int numberOfSlices) {
+        this.numberOfSlices = numberOfSlices;
     }
 
     public Pizza(String cheese, String sauce, int numberOfSlices) {
@@ -19,15 +20,31 @@ public class Pizza {
         this.numberOfSlices = numberOfSlices;
     }
 
-    protected void setCheese(String cheese) {
+    public String getCheese() {
+        return cheese;
+    }
+
+    public String getSauce() {
+        return sauce;
+    }
+
+    public int getNumberOfSlices() {
+        return numberOfSlices;
+    }
+
+    protected double getBank() { //somehow can still be used by the public
+        return bank;
+    }
+
+    public void setCheese(String cheese) {
         this.cheese = cheese;
     }
 
-    protected void setSauce(String sauce) {
+    public void setSauce(String sauce) {
         this.sauce = sauce;
     }
 
-    protected void setNumberOfSlices(int numberOfSlices) {
+    public void setNumberOfSlices(int numberOfSlices) {
         this.numberOfSlices = numberOfSlices;
     }
 
@@ -58,6 +75,27 @@ public class Pizza {
             default:
                 System.out.println("The cheese is soft and nicely contrasts the crispy crust.");
                 break;
+        }
+    }
+
+    public double calculateBill() {
+        double costOfCheese = cheese.toLowerCase() == "cheddar" ? 2.0 : 2.5;
+        double costOfSauce = sauce.toLowerCase() == "tomato" ? 1.0 : 1.5;
+        double costOfSlices = numberOfSlices * 2.5;
+
+        return costOfCheese + costOfSauce + costOfSlices;
+    }
+
+    public double payBill(double money) {
+        if (money > calculateBill()) {
+            bank += calculateBill();
+            return money - calculateBill();
+        } else if (money == calculateBill()) {
+            bank += calculateBill();
+            return 0.0;
+        } else {
+            System.out.println("Please pay full amount!");
+            return money;
         }
     }
 }
