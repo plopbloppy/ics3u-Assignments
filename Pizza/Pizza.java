@@ -6,11 +6,14 @@ public class Pizza {
     protected double bank;
 
     public Pizza() {
+        this.cheese = "mozarella";
         this.sauce = "tomato";
         this.numberOfSlices = 8;
     }
 
     public Pizza(int numberOfSlices) {
+        this.cheese = "mozarella";
+        this.sauce = "tomato";
         this.numberOfSlices = numberOfSlices;
     }
 
@@ -79,7 +82,7 @@ public class Pizza {
     }
 
     public double calculateBill() {
-        double costOfCheese = cheese.toLowerCase() == "cheddar" ? 2.0 : 2.5;
+        double costOfCheese = cheese.toLowerCase() == "mozarella" ? 2.0 : 2.5;
         double costOfSauce = sauce.toLowerCase() == "tomato" ? 1.0 : 1.5;
         double costOfSlices = numberOfSlices * 2.5;
 
