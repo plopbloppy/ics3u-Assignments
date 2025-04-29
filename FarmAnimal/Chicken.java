@@ -6,7 +6,6 @@ public class Chicken extends Bird {
         super(age, gender);
     }
 
-
     @Override
     public String eat() {
         super.eat();
@@ -24,6 +23,7 @@ public class Chicken extends Bird {
         }
     }
 
-    
-    
+    public String fly() {
+        return "Your chicken" + (isAdult() ? " titters over the fence!" : " flies for a short while!");
+    }
 }

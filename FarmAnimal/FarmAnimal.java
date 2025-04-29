@@ -59,34 +59,44 @@ public class FarmAnimal {
     protected String dropGift() {
         String gift;
 
-        gift = switch (happiness) {
-            case 5 -> "button";
-            case 10 -> "coin";
-            case 15 -> "flower";
-            default -> null;
-        };
+        if (happiness < 10) {
+            gift = "berry";
+        } else if (happiness < 20) {
+            gift = "coin";
+        } else if (happiness < 30) {
+            gift = "flower";
+        } else if (happiness < 40) {
+            gift = "apple";
+        } else {
+            gift = null;
+        }
         return gift;
     }
 
     public String eat() {
         if (isFull) {
-            return ("Your animal is full!");
+            return "Your animal is full!";
         } else {
             happiness += 2;
             isFull = true;
-            return "Your animal is satisfied! +2 happiness";
+            return "Nom nom nom! +2 happiness";
         }
     }
 
-    //implement gifting system
     public String pet() {
-        happiness += 5;
+        happiness += 3;
+
+        if (dropGift() != null) {
+            numberOfGifts++;
+            System.out.println((name != null ? name : "Your animal") + " has found something for you: " + dropGift());
+        }
+        
         return (name != null ? name : "Your animal") + " is very happy today! +5 happiness";
     }
 
     public String sleep() {
         age++;
-        happiness += 20;
+        happiness += 5;
         isFull = false;
         return "Zzz.";
     }
