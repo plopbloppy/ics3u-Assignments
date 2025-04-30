@@ -1,4 +1,4 @@
-import FarmAnimalEnums.Gender;
+import farmanimalenums.Gender;
 
 public class Coop {
 
@@ -7,7 +7,7 @@ public class Coop {
         Bird duckie = new Bird(4, Gender.MALE, "potaot");
 
         System.out.println(duckie.harvestSunflower());
-        System.out.println(duckie.eat());
+        System.out.println(duck.eat());
         System.out.println(duckie.eat());
 
     }
