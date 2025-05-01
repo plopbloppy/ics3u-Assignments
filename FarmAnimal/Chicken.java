@@ -1,6 +1,6 @@
 import farmanimalenums.Gender;
+
 /**
-* Interactive farm game that allows the user to take care of farm animals!
 * With this subclass and previous bird subclass, chickens have extra interactions.
 *
 * @author Kaili Tang
@@ -13,8 +13,8 @@ public class Chicken extends Bird {
     /**
     * constructor that creates a chicken with age and gender
     * 
-    * @param age age of chicken
-    * @param gender gender of chicken: male/female
+    * @param age the age
+    * @param gender the gender
     */
     public Chicken(int age, Gender gender) {
         super(age, gender);
@@ -23,9 +23,9 @@ public class Chicken extends Bird {
     /**
     * constructor that creates a chicken with age, gender and name
     *
-    * @param age age of chicken
-    * @param gender gender of chicken: male/female
-    * @param name name of chicken
+    * @param age the age
+    * @param gender the gender
+    * @param name the name
     */
     public Chicken(int age, Gender gender, String name) {
         super(age, gender, name);
@@ -39,11 +39,11 @@ public class Chicken extends Bird {
     }
 
     /**
-    * pet chicken and gain 3 happiness
-    * if chicken is an adult, it will make a sound
-    * if chicken is a baby, it will make a different sound
+    * pets this chicken and gain 3 happiness
+    * if this chicken is an adult, it will make a sound
+    * if this chicken is a baby, it will make a different sound
     *  
-    * @return sound of bird
+    * @return sound of bird and +3 happiness
     */
     @Override
     public String pet() {
@@ -57,9 +57,9 @@ public class Chicken extends Bird {
     }
 
     /**
-    * returns chicken flying
-    * if chicken is an adult, it will fly over the fence
-    * if chicken is a baby, it will fly for a short while
+    * returns this chicken flying
+    * if this chicken is an adult, it will fly over the fence
+    * if this chicken is a baby, it will fly for a short while
     *
     * @return flying chicken
     */
