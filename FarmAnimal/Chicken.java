@@ -5,7 +5,7 @@ import farmanimalenums.Gender;
 *
 * @author Kaili Tang
 * @author Agincourt CI
-* @version 6.0 Build 9000 - April 2025
+* @version 1.0 - April 2025
 */
 
 public class Chicken extends Bird {
@@ -38,23 +38,46 @@ public class Chicken extends Bird {
     }
 
     /**
+    * determines the type of gift this chicken will give if friendship is in between 0 and 40
+    *
+    * @returns the type of gift (true) or null (false)
+    */
+    protected String dropGift() {
+        String gift;
+
+        if (friendship < 10) {
+            gift = "feather";
+        } else if (friendship < 20) {
+            gift = "silver coin";
+        } else if (friendship < 30) {
+            gift = "tulip";
+        } else if (friendship < 40) {
+            gift = "gold egg";
+        } else {
+            gift = null;
+        }
+        return gift;
+    }
+
+    /**
     * pets this chicken and gain 3 friendship
     * if this chicken is an adult, it will make a sound
     * if this chicken is a baby, it will make a different sound
-    *  
-    * @return sound of bird and +3 friendship
+    * if friendship if in between 0 an 40, this chicken will drop a gift
     */
-    @Override
     public void pet() {
-        super.pet();
-
-        //test if friendship stil increase 
+        if (dropGift() != null) {
+            numberOfGifts++;
+            System.out.println("Your chicken has found something for you: " + dropGift());
+        }
 
         if (isAdult()) {
             System.out.println((isFemale() ? "Cluck cluck!" : "Bu-gawwwk!") + " +3 friendship");
         } else {
             System.out.println("Cheep cheep! +3 friendship");
         }
+
+        friendship += 3;
     }
 
     /** if there are sufficient ingredients produced from this chicken, make mayo */
