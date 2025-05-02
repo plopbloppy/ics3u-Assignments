@@ -12,22 +12,27 @@ public class FarmAnimal {
 
     /** the age of the farm animal in years */
     public int age;
+
     /** the gender of the farm animal (male/female) */
     public Gender gender;
+
     /** the name of the farm animal */
     public String name;
-    /** the amount of happiness the farm animal has, increases through interactions */
-    public int happiness;
-    /** the amount of gifts the farm animal has given, dependent on happiness */
+
+    /** the amount of friendship you have with the farm animal, increases through interactions */
+    public int friendship;
+
+    /** the amount of gifts the farm animal has given, dependent on friendship */
     public int numberOfGifts;
+
     /** determines whether the farm animal has already eaten in the day or not */
     protected boolean isFull;
 
     /**
     * constructor that creates a farm animal with age and gender
     *
-    * @param age age of farm animal
-    * @param gender gender of farm animal (male/female)
+    * @param age the age
+    * @param gender the gender
     */
     public FarmAnimal(int age, Gender gender) {
         this.age = age;
@@ -37,9 +42,9 @@ public class FarmAnimal {
     /**
     * constructor that creates a farm animal with age, gender and name
     *
-    * @param age age of farm animal
-    * @param gender gender of farm animal: male/female
-    * @param name name of farm animal
+    * @param age the age
+    * @param gender the gender
+    * @param name the name
     */
     public FarmAnimal(int age, Gender gender, String name) {
         this.age = age;
@@ -75,12 +80,12 @@ public class FarmAnimal {
     }
 
     /**
-    * returns the happiness level of this farm animal
+    * returns the level of friendship with this farm animal
     *
-    * @return the amount of happiness
+    * @return the friendship level
     */
-    public int getHappiness() {
-        return happiness;
+    public int getFriendshipLevel() {
+        return friendship;
     }
 
     /**
@@ -119,26 +124,21 @@ public class FarmAnimal {
         this.name = name;
     }
 
-    //NEED TO STOP POSSIBILITY OF SAME NAME FOR SAME ANIMAL
-    protected boolean sameName(FarmAnimal animal) {
-        return this.name.equalsIgnoreCase(animal.getName());
-    }
-
     /**
-    * determines the type of gift this farm animal will give if happiness is in between 0 and 40
+    * determines the type of gift this farm animal will give if friendship is in between 0 and 40
     *
     * @returns the type of gift (true) or null (false)
     */
     protected String dropGift() {
         String gift;
 
-        if (happiness < 10) {
+        if (friendship < 10) {
             gift = "berry";
-        } else if (happiness < 20) {
+        } else if (friendship < 20) {
             gift = "coin";
-        } else if (happiness < 30) {
+        } else if (friendship < 30) {
             gift = "flower";
-        } else if (happiness < 40) {
+        } else if (friendship < 40) {
             gift = "apple";
         } else {
             gift = null;
@@ -146,47 +146,39 @@ public class FarmAnimal {
         return gift;
     }
 
-    /** 
-    * this farm animal eats and gains 2 happiness if it is not full
-    *
-    * @returns +2 happiness (true) or "Your animal is full!" (false)
-    */
-    public String eat() {
+    /** this farm animal eats and gains 2 friendship if it is not full */
+    public void eat() {
         if (isFull) {
-            return "Your animal is full!";
+            System.out.println("Your animal is full!");
         } else {
-            happiness += 2;
+            friendship += 2;
             isFull = true;
-            return "Nom nom nom! +2 happiness";
+            System.out.println("Nom nom nom! +2 friendship");
         }
     }
 
     /**
-    * pets this farm animal and gain 3 happiness
-    * this farm animal gives a gift if happiness is in between 0 and 40, and number of gifts increases by 1
-    *
-    * @return +3 happiness and gift (true) or null (false)
+    * pets this farm animal and gain 3 friendship
+    * this farm animal gives a gift if friendship is in between 0 and 40, and number of gifts increases by 1
     */
-    public String pet() {
+    public void pet() {
         if (dropGift() != null) {
             numberOfGifts++;
             System.out.println((name != null ? name : "Your animal") + " has found something for you: " + dropGift());
         }
 
-        happiness += 3;
-        return (name != null ? name : "Your animal") + " is very happy today! +3 happiness";
+        friendship += 3;
+        System.out.println((name != null ? name : "Your animal") + " is very happy today! +3 friendship");
     }
 
     /**
-    * this farm animal sleeps, ages 1 year, and gains 5 happiness
+    * this farm animal sleeps, ages 1 year, and gains 5 friendship
     * sleeping allows the farm animal to eat again
-    *
-    * @return +5 happiness, +1 age
     */
-    public String sleep() {
+    public void sleep() {
         age++;
-        happiness += 5;
+        friendship += 5;
         isFull = false;
-        return "Zzz. +5 happiness";
+        System.out.println("Zzz. +5 friendship");
     }
 }

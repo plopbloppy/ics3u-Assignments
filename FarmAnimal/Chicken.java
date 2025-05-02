@@ -1,7 +1,7 @@
 import farmanimalenums.Gender;
 
 /**
-* With this subclass and previous bird subclass, chickens have extra interactions.
+* Chickens have extra interactions.
 *
 * @author Kaili Tang
 * @author Agincourt CI
@@ -9,6 +9,12 @@ import farmanimalenums.Gender;
 */
 
 public class Chicken extends Bird {
+
+    /** the number of jars of mayo */
+    public int jarsOfMayo;
+
+    /** the number of egg salad dishes */
+    public int eggSalad;
 
     /**
     * constructor that creates a chicken with age and gender
@@ -31,39 +37,54 @@ public class Chicken extends Bird {
         super(age, gender, name);
     }
 
-    //WIP
-    @Override
-    public String eat() {
-        super.eat();
-        return "Peck peck! +2 happiness";
-    }
-
     /**
-    * pets this chicken and gain 3 happiness
+    * pets this chicken and gain 3 friendship
     * if this chicken is an adult, it will make a sound
     * if this chicken is a baby, it will make a different sound
     *  
-    * @return sound of bird and +3 happiness
+    * @return sound of bird and +3 friendship
     */
     @Override
-    public String pet() {
+    public void pet() {
         super.pet();
 
+        //test if friendship stil increase 
+
         if (isAdult()) {
-            return (isFemale() ? "Cluck cluck!" : "Bu-gawwwk!") + " +3 happiness";
+            System.out.println((isFemale() ? "Cluck cluck!" : "Bu-gawwwk!") + " +3 friendship");
         } else {
-            return "Cheep cheep! +3 happiness";
+            System.out.println("Cheep cheep! +3 friendship");
+        }
+    }
+
+    /** if there are sufficient ingredients produced from this chicken, make mayo */
+    public void makeMayo() {
+        if (eggs >= 2) {
+            eggs -= 2;
+            jarsOfMayo++;
+            cookingLevel += 2;
+            System.out.println("You succesfully made mayo! +2 cooking level");
+        }
+
+    }
+
+    /** if there are sufficient ingredients produced from this chicken, make egg salad */
+    public void cookEggSalad() {
+        if (eggs >= 3 && jarsOfMayo >= 1) {
+            eggs -= 3;
+            jarsOfMayo --;
+            eggSalad++;
+            cookingLevel += 4;
+            System.out.println("You cook a delicious and filling egg salad! +4 cooking level");
         }
     }
 
     /**
-    * returns this chicken flying
+    * prints this chicken flying
     * if this chicken is an adult, it will fly over the fence
     * if this chicken is a baby, it will fly for a short while
-    *
-    * @return flying chicken
     */
-    public String fly() {
-        return "Your chicken" + (isAdult() ? " titters over the fence!" : " flies for a short while!");
+    public void fly() {
+        System.out.println("Your chicken" + (isAdult() ? " titters over the fence!" : " flies for a short while!"));
     }
 }

@@ -12,8 +12,13 @@ public class Bird extends FarmAnimal {
 
     /** the number of eggs collected */
     public int eggs;
+
     /** the number of sunflower seeds collected */
     public int sunflowerSeeds;
+
+    /** the cooking level, increases when a dish is made */
+    public int cookingLevel;
+
     /** the age of an adult bird */
     final int ADULT_AGE = 2;
 
@@ -50,7 +55,7 @@ public class Bird extends FarmAnimal {
     /** 
     * returns the number of sunflower seeds collected for this bird
     *
-    * @return number of sunflower seeds
+    * @return the number of sunflower seeds
     */
     public int getNumberOfSunflowerSeeds() {
         return sunflowerSeeds;
@@ -83,62 +88,54 @@ public class Bird extends FarmAnimal {
         return isAdult() && isFemale();
     }
 
-    /**
-    * this bird lays an egg if it is an adult female
-    *
-    * @return number of eggs +1 and number of gifts +1 (true) or "Your bird can't lay eggs!" (false)
-    */
-    public String layEgg() {
+    /** this bird lays an egg if it is an adult female */
+    public void layEgg() {
         if (canLayEggs()) {
             eggs++;
             numberOfGifts++;
-            return (name != null ? name : "Your bird") + " has laid an egg! +1 egg";
+            System.out.println((name != null ? name : "Your bird") + " has laid an egg! +1 egg");
         } else {
-            return (name != null ? name : "Your bird") + " can't lay eggs!";
-        }
-    }
-
-    /** if this bird has laid at least one egg, boil the egg */
-    public String boilEgg() {
-        if (eggs >= 1) {
-            eggs--;
-            return "The egg is perfectly cooked!";
-        } else {
-            return "Not enough eggs!";
+            System.out.println((name != null ? name : "Your bird") + " can't lay eggs!");
         }
     }
 
     /**
-    * this bird eats food and gains 2 happiness if it is not full
+    * this bird eats food and gains 2 friendship if it is not full
     * under the same condition, if the user has at least 25 sunflower seeds, 
-    * this bird will eat sunflower seeds and gain 5 happiness
-    *  
-    * @return happiness +2 or 5 (if sunflower seeds >= 25) or "Your bird is full!"
+    * this bird will eat 25 sunflower seeds and gain 5 friendship
     */
     @Override
-    public String eat() {
+    public void eat() {
         if (isFull) {
-            return "Your bird is full!";
+            System.out.println("Your bird is full!");
         } else {
             isFull = true;
             
             if (sunflowerSeeds >= 25) {
-                happiness += 5;
-                return "Your bird is especially happy! +5 happiness";
+                friendship += 5;
+                sunflowerSeeds -= 25;
+                System.out.println("Your bird is especially happy! +5 friendship");
             } else {
-                happiness += 2;
-                return "Nom nom nom! +2 happiness";
+                friendship += 2;
+                System.out.println("Nom nom nom! +2 friendship");
             }
         }
     }
 
-    /**
-    * harvests sunflower seeds
-    * 
-    * @return sunflower seeds +50
-    */
-    public String harvestSunflower() {
+    /** if this bird has laid at least one egg, boil the egg */
+    public void boilEgg() {
+        if (eggs >= 1) {
+            eggs--;
+            cookingLevel++;
+            System.out.println("The egg is perfectly cooked! +1 cooking level");
+        } else {
+            System.out.println("Not enough eggs!");
+        }
+    }
+
+    /** harvests sunflower seeds */
+    public void harvestSunflower() {
         sunflowerSeeds += 50;
-        return "You harvested 50 sunflower seeds! +50 seeds";
+        System.out.println("You harvested 50 sunflower seeds! +50 seeds");
     }
 }
