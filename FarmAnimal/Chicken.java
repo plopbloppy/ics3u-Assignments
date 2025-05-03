@@ -42,6 +42,7 @@ public class Chicken extends Bird {
     *
     * @returns the type of gift (true) or null (false)
     */
+    @Override
     protected String dropGift() {
         String gift;
 
@@ -65,6 +66,7 @@ public class Chicken extends Bird {
     * if this chicken is a baby, it will make a different sound
     * if friendship if in between 0 an 40, this chicken will drop a gift
     */
+    @Override
     public void pet() {
         if (dropGift() != null) {
             numberOfGifts++;
@@ -76,7 +78,6 @@ public class Chicken extends Bird {
         } else {
             System.out.println("Cheep cheep! +3 friendship");
         }
-
         friendship += 3;
     }
 
