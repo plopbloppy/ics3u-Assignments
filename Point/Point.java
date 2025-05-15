@@ -43,7 +43,7 @@ public class Point {
     }
 
     public double slope(Point point) {
-        return (difference(point).getY()) / difference(point).getX();
+        return difference(point).getY() / difference(point).getX();
     }
 
     public Point sum(Point point) {
