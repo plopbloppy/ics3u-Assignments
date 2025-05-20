@@ -1,13 +1,12 @@
 import farmanimalenums.Gender;
 
 /**
-* Chickens have extra interactions.
-*
-* @author Kaili Tang
-* @author Agincourt CI
-* @version 1.0 - April 2025
-*/
-
+ * Chickens have extra interactions.
+ *
+ * @author Kaili Tang
+ * @author Agincourt CI
+ * @version 1.0 - April 2025
+ */
 public class Chicken extends Bird {
 
     /** the number of jars of mayo */
@@ -17,31 +16,41 @@ public class Chicken extends Bird {
     public int eggSalad;
 
     /**
-    * constructor that creates a chicken with age and gender
-    * 
-    * @param age the age
-    * @param gender the gender
-    */
+     * constructor that creates a chicken with age and gender
+     * 
+     * @param age the age
+     * @param gender the gender
+     */
     public Chicken(int age, Gender gender) {
         super(age, gender);
     }  
 
     /**
-    * constructor that creates a chicken with age, gender and name
-    *
-    * @param age the age
-    * @param gender the gender
-    * @param name the name
-    */
+     * constructor that creates a chicken with age, gender and name
+     *
+     * @param age the age
+     * @param gender the gender
+     * @param name the name
+     */
     public Chicken(int age, Gender gender, String name) {
         super(age, gender, name);
     }
 
     /**
-    * determines the type of gift this chicken will give if friendship is in between 0 and 40
-    *
-    * @returns the type of gift (true) or null (false)
-    */
+     * calls the name of this chicken, if it has one
+     * 
+     * @return name or neutral call
+     */
+    @Override
+    protected String callName() {
+        return name != null ? name : "Your animal";
+    }
+
+    /**
+     * determines the type of gift this chicken will give if friendship is in between 0 and 40
+     *
+     * @returns the type of gift (true) or null (false)
+     */
     @Override
     protected String dropGift() {
         String gift;
@@ -61,16 +70,15 @@ public class Chicken extends Bird {
     }
 
     /**
-    * pets this chicken and gain 3 friendship
-    * if this chicken is an adult, it will make a sound
-    * if this chicken is a baby, it will make a different sound
-    * if friendship if in between 0 an 40, this chicken will drop a gift
-    */
-    @Override
+     * pets this chicken and gain 3 friendship
+     * if this chicken is an adult, it will make a sound
+     * if this chicken is a baby, it will make a different sound
+     * if friendship if in between 0 an 40, this chicken will drop a gift
+     */
     public void pet() {
         if (dropGift() != null) {
             numberOfGifts++;
-            System.out.println("Your chicken has found something for you: " + dropGift());
+            System.out.println(callName() + " has found something for you: " + dropGift());
         }
 
         if (isAdult()) {
@@ -78,6 +86,7 @@ public class Chicken extends Bird {
         } else {
             System.out.println("Cheep cheep! +3 friendship");
         }
+
         friendship += 3;
     }
 
@@ -104,11 +113,11 @@ public class Chicken extends Bird {
     }
 
     /**
-    * prints this chicken flying
-    * if this chicken is an adult, it will fly over the fence
-    * if this chicken is a baby, it will fly for a short while
-    */
+     * prints this chicken flying
+     * if this chicken is an adult, it will fly over the fence
+     * if this chicken is a baby, it will fly for a short while
+     */
     public void fly() {
-        System.out.println("Your chicken" + (isAdult() ? " titters over the fence!" : " flies for a short while!"));
+        System.out.println(callName() + (isAdult() ? " titters over the fence!" : " flies for a short while!"));
     }
 }

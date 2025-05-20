@@ -7,13 +7,8 @@ public class AnimalFarm {
         Bird duckie = new Bird(4, Gender.MALE, "potaot");
         Bird ducke = new Chicken(4, Gender.MALE, "potaot");
 
-
-        ducke.pet();
-        ducke.pet();
-        ducke.pet();
-        ducke.pet();
-        ducke.pet();
-        ducke.pet();
-        
+        ducke.eat();
+        duck.pet();
+        duckie.isAdult();
     }
 }
