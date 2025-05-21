@@ -1,5 +1,3 @@
-import farmanimalenums.Gender;
-
 /**
  * Chickens have extra interactions.
  *
@@ -49,7 +47,7 @@ public class Chicken extends Bird {
     /**
      * determines the type of gift this chicken will give if friendship is in between 0 and 40
      *
-     * @returns the type of gift (true) or null (false)
+     * @return the type of gift (true) or null (false)
      */
     @Override
     protected String dropGift() {
@@ -75,6 +73,7 @@ public class Chicken extends Bird {
      * if this chicken is a baby, it will make a different sound
      * if friendship if in between 0 an 40, this chicken will drop a gift
      */
+    @Override
     public void pet() {
         if (dropGift() != null) {
             numberOfGifts++;

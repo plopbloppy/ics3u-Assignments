@@ -1,5 +1,3 @@
-import farmanimalenums.Gender;
-
 public class AnimalFarm {
 
     public static void main(String[] args) {
@@ -7,8 +5,11 @@ public class AnimalFarm {
         Bird duckie = new Bird(4, Gender.MALE, "potaot");
         Bird ducke = new Chicken(4, Gender.MALE, "potaot");
 
-        ducke.eat();
         duck.pet();
-        duckie.isAdult();
+        duckie.pet();
+        ducke.pet();
+        ducke.pet();
+        ducke.pet();
+        ducke.pet();
     }
 }

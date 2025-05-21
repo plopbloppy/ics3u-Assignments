@@ -1,5 +1,3 @@
-import farmanimalenums.Gender;
-
 /** 
  * Interactive farm game taht allows the user to take care of farm animals!
  * 
@@ -137,7 +135,7 @@ public class FarmAnimal {
     /**
      * determines the type of gift this farm animal will give if friendship is in between 0 and 40
      *
-     * @returns the type of gift (true) or null (false)
+     * @return the type of gift (true) or null (false)
      */
     protected String dropGift() {
         String gift;
