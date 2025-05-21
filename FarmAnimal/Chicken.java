@@ -73,7 +73,6 @@ public class Chicken extends Bird {
      * if this chicken is a baby, it will make a different sound
      * if friendship if in between 0 an 40, this chicken will drop a gift
      */
-    @Override
     public void pet() {
         if (dropGift() != null) {
             numberOfGifts++;
@@ -97,7 +96,6 @@ public class Chicken extends Bird {
             cookingLevel += 2;
             System.out.println("You succesfully made mayo! +2 cooking level");
         }
-
     }
 
     /** if there are sufficient ingredients produced from this chicken, make egg salad */

@@ -111,7 +111,6 @@ public class Bird extends FarmAnimal {
      * under the same condition, if the user has at least 25 sunflower seeds, 
      * this bird will eat 25 sunflower seeds and gain 5 friendship
      */
-    @Override
     public void eat() {
         if (isFull) {
             System.out.println(callName() + " is full!");

@@ -24,7 +24,6 @@ public class FarmAnimal {
 
     /** determines whether the farm animal has already eaten in the day or not */
     protected boolean isFull;
-
     
     /**
      * constructor that creates a farm animal with age and gender
@@ -36,7 +35,6 @@ public class FarmAnimal {
         this.age = age;
         this.gender = gender;
     }
-
 
     /** 
      * constructor that creates a farm animal with age, gender and name
